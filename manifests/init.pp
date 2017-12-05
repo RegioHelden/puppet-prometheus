@@ -130,6 +130,14 @@
 #  via a reverse proxy). Used for generating relative and absolute links back to Alertmanager itself.
 #  If omitted, relevant URL components will be derived automatically.
 #
+#  [*collect_scrape_jobs*]
+#  Array of scrape_configs. Format, e.g.:
+#  - job_name: some_exporter
+#    scheme: https
+#  The jobs defined here will be used to collect resources exported via prometheus::daemon,
+#  creating the appropriate prometheus scrape configs for each endpoint. All scrape_config
+#  options can be passed as hash elements. Only the job_name is mandatory.
+#
 # Actions:
 #
 # Requires: see Modulefile
@@ -180,6 +188,7 @@ class prometheus (
   Hash $config_defaults = {},
   String $os            = downcase($facts['kernel']),
   Optional[Variant[Stdlib::HTTPUrl, Stdlib::Unixpath, String[1]]] $external_url = undef,
+  Optional[Array[Hash[String, String]]] $collect_scrape_jobs = [],
 ) {
 
   case $arch {
