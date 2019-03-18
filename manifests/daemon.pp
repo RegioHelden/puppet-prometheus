@@ -82,8 +82,8 @@ define prometheus::daemon (
   Hash[String, Scalar] $env_vars  = {},
   Optional[String] $env_file_path = $prometheus::env_file_path,
   Boolean $export_scrape_job      = false,
-  String $scrape_host             = $facts['fqdn'],
-  Optional[Integer] $scrape_port  = undef,
+  Stdlib::Fqdn $scrape_host       = $facts['fqdn'],
+  Optional[Stdlib::Port] $scrape_port = undef,
 ) {
 
   case $install_method {
