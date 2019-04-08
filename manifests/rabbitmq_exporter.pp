@@ -171,5 +171,7 @@ class prometheus::rabbitmq_exporter (
     service_enable     => $service_enable,
     manage_service     => $manage_service,
     env_vars           => $real_env_vars,
+    export_scrape_job  => true,
+    scrape_port        => 9090,
   }
 }

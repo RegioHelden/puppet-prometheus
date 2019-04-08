@@ -137,5 +137,7 @@ class prometheus::elasticsearch_exporter (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
+    export_scrape_job  => true,
+    scrape_port        => 9114,
   }
 }
